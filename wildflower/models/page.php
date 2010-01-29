@@ -96,12 +96,6 @@ class Page extends AppModel {
         }
         $pages = $this->children($pageId, true);
         // Filter out drafts
-        function noDrafts($page) {
-            if ($page['Page']['draft'] == 1) {
-                return false;
-            }
-            return true;
-        }
         $pages = self::filterOutDrafts($pages);
         return $pages;
     }
