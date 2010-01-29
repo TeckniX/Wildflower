@@ -86,7 +86,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'webmaster',
-		'password' => 'cakemonkey',
+		'password' => ' ',
 		'database' => 'wildflower',
 	    'port' => 3306
 	);
