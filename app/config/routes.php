@@ -31,8 +31,12 @@ Router::connect('/' . Configure::read('Wildflower.postsParent') . '/:slug', arra
 Router::connect('/c/:slug', array('controller' => 'posts', 'action' => 'category'));
 
 // Wildflower admin routes
-$prefix = Configure::read('Routing.admin');
+//$prefix = Configure::read('Routing.admin');
+$prefix = "cicada-admin";
+//Router::connect("/$prefix", array('controller' => 'dashboards', 'action' => 'index', 'admin'=>true,'prefix'=>'admin'));
 Router::connect("/$prefix", array('controller' => 'dashboards', 'action' => 'index', 'admin' => true));
+Router::connect("/$prefix/:controller", array('admin' => true));
+Router::connect("/$prefix/:controller/:action/*", array('admin' => true));
 
 // Image thumbnails
 // @TODO shorten to '/i/*'
