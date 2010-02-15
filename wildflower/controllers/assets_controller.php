@@ -67,8 +67,15 @@ class AssetsController extends AppController {
 	 * Files overview
 	 *
 	 */
-	function admin_index() {
-        $this->feedFileManager();
+	function admin_index($filter=null) {
+        if($filter){
+			$this->paginate = array(
+			'conditions' => array('Asset.category_id' => $filter),
+			'limit' => 12,
+			'order' => array('created' => 'desc')
+			);
+		}
+		$this->feedFileManager($filter);
 	}
 	
 	/**
@@ -241,10 +248,12 @@ class AssetsController extends AppController {
         fclose($cache);
     }
 	
-	private function feedFileManager() {
+	private function feedFileManager($filter) {
+		// Categories for select box
+        $categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => 61)));
 	    $this->pageTitle = 'Files';
 	    $files = $this->paginate($this->modelClass);
-        $this->set(compact('files'));
+        $this->set(compact('files','filter','categories'));
 	}
     
 }

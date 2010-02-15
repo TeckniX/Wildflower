@@ -46,5 +46,14 @@
     <li class="sidebar-box">
         <?php echo $this->element('../assets/_upload_file_box'); ?>
     </li>
+	<li class="sidebar-box">
+	<h4>Filter by Category:</h4>
+		<ul>
+			<li><?php echo $htmla->link('All', array('action' => 'index')); ?></li>
+			<?php foreach($categories as $filterIndex=>$fileCategory): ?>
+			<li><?php echo $html->link(ucfirst($fileCategory),array('action' => 'index',$filterIndex)) ?></li>
+			<?php endforeach; ?>
+		</ul>
+	</li>
 <?php $partialLayout->blockEnd(); ?>
 

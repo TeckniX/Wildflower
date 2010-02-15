@@ -9,6 +9,11 @@ class Asset extends AppModel {
         // )
 	);
 	
+	public $belongsTo = array('Category'=>array(
+							'conditions'=>array('Category.parent_id'=>61)
+							)
+						);
+	
 	function delete($id) {
 	    $upload = $this->findById($id);
 	    if (!$upload) return $this->cakeError('object_not_found');
@@ -19,7 +24,7 @@ class Asset extends AppModel {
             $this->_deleteFiles($path);
             return true;
 	    }
-	    
+	  	
 	    return false;
 	}
 	

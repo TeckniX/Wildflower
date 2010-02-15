@@ -6,6 +6,9 @@ class Category extends AppModel {
         'Tree', 
         'Slug' => array('label' => 'title')
     );
+	
+	public $hasMany = array('Asset');
+	
     public $validate = array(
         'title' => VALID_NOT_EMPTY
     );

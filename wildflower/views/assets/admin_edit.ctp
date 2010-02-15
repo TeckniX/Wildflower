@@ -28,6 +28,7 @@ echo $navigation->create(array(
         echo 
         $form->create('Asset', array('type' => 'file', 'url' => $html->url(array('action' => 'admin_update', 'base' => false)))),
         $form->input('title', array('between' => '<br />', 'label' => 'Title <small>(optional)</small>')),
+		$form->input('category', array('label'=>'Category:', 'type'=>'select','options'=>$categories)),
         '<div>',
         $form->hidden('id'),
         '</div>',

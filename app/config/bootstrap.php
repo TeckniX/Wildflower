@@ -61,3 +61,5 @@ $pluginPaths      = array(WILDFLOWER_DIR . 'plugins' . DS);
 $vendorPaths      = array(WILDFLOWER_DIR . 'vendors' . DS);
 $localePaths      = array(WILDFLOWER_DIR . 'locale' . DS);
 $shellPaths       = array(WILDFLOWER_DIR . 'vendors' . DS . 'shells' . DS);
+
+?>

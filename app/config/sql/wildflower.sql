@@ -27,6 +27,7 @@ CREATE TABLE `assets` (
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `mime` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `category_id` int(11) DEFAULT NULL,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -72,7 +73,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (58,57,8,9,'sci-fi','Sci-fi',NULL),(59,57,10,11,'love-poetry','Love poetry',NULL),(54,53,2,3,'action','Action',NULL),(56,NULL,5,6,'cooking','Cooking',NULL),(57,NULL,7,12,'books','Books',NULL),(53,NULL,1,4,'movies','Movies',NULL);
+INSERT INTO `categories` VALUES (58,57,8,9,'sci-fi','Sci-fi',NULL),(59,57,10,11,'love-poetry','Love poetry',NULL),(54,53,2,3,'action','Action',NULL),(56,NULL,5,6,'cooking','Cooking',NULL),(57,NULL,7,12,'books','Books',NULL),(53,NULL,1,4,'movies','Movies',NULL),(61,NULL,13,16,'assets','Assets',NULL),(62,61,14,15,'image','Image','');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
