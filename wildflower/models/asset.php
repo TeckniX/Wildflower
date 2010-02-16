@@ -8,11 +8,8 @@ class Asset extends AppModel {
         //     'message' => 'Select a file to upload'
         // )
 	);
-	
-	public $belongsTo = array('Category'=>array(
-							'conditions'=>array('Category.parent_id'=>61)
-							)
-						);
+
+	public $belongsTo = array('Category');
 	
 	function delete($id) {
 	    $upload = $this->findById($id);

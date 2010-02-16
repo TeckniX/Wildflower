@@ -13,6 +13,8 @@ class AddCategoryToAssets extends Ruckusing_BaseMigration {
 			$lastId = $result['id'];
 			$query = "INSERT INTO categories SET parent_id = $lastId, slug = 'image', title = 'Image', lft = ".($chain+1).", rght = ".($chain+2);
 			$this->execute($query);
+			$query = "INSERT INTO settings SET name = 'category_parent_id', value = $lastId, description = 'The parent category to use for all assets', type = 'select', label = 'Asset Category Parent', order = 4 ";
+			$this->execute($query);
 		 }
 		 
 	}//up()

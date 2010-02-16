@@ -34,7 +34,10 @@
         if ($setting['Setting']['name'] == 'home_page_id') {
             $options['options'] = $homePageIdOptions;
             $options['escape'] = false;
-        } else if ($setting['Setting']['name'] == 'email_delivery') {
+        } else if ($setting['Setting']['name'] == 'category_parent_id') {
+            $options['options'] = $categoryParentIdOptions;
+            $options['escape'] = false;
+		} else if ($setting['Setting']['name'] == 'email_delivery') {
             $options['options'] = array('mail' => 'Local server', 'smtp' => 'SMTP account');
             if (Configure::read('debug') > 0) {
                 $options['options']['debug'] = 'Dump to screen';

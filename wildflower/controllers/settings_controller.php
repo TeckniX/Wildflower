@@ -1,7 +1,7 @@
 <?php
 class SettingsController extends AppController {
 
-	public $uses = array('Page', 'Setting');
+	public $uses = array('Category','Page', 'Setting');
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
@@ -29,12 +29,13 @@ class SettingsController extends AppController {
 	    $this->pageTitle = 'Site settings';
 	    
 	    $homePageIdOptions = $this->Page->generatetreelist(null, null, null, ' - ');
+		$categoryParentIdOptions = $this->Category->generatetreelist(null, null, null, ' - ');
 	    
 	    $themeOptions = $this->Setting->getThemes();
 	    
 	    $settings = $this->Setting->find('all', array('order' => 'order ASC'));
 	    
-	    $this->set(compact('settings', 'homePageIdOptions', 'themeOptions'));
+	    $this->set(compact('settings', 'homePageIdOptions', 'themeOptions', 'categoryParentIdOptions'));
 	}
 
 	/**

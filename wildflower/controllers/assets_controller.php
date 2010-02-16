@@ -97,6 +97,8 @@ class AssetsController extends AppController {
 	function admin_edit($id) {
 		$this->data = $this->Asset->findById($id);
 		$this->pageTitle = $this->data[$this->modelClass]['title'];
+		$categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => $this->Asset->catParent)));
+		$this->set(compact('categories'));
 	}
 	
 	/**
@@ -122,7 +124,8 @@ class AssetsController extends AppController {
 	function admin_update() {
 	    $this->Asset->create($this->data);
 	    if (!$this->Asset->exists()) return $this->cakeError('object_not_found');
-	    $this->Asset->saveField('title', $this->data[$this->modelClass]['title']);
+	    //$this->Asset->saveField('title', $this->data[$this->modelClass]['title']);
+		$this->Asset->save();
 	    $this->redirect(array('action' => 'edit', $this->Asset->id));
 	}
 	
@@ -248,9 +251,9 @@ class AssetsController extends AppController {
         fclose($cache);
     }
 	
-	private function feedFileManager($filter) {
+	private function feedFileManager($filter=null) {
 		// Categories for select box
-        $categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => 61)));
+        $categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => $this->categoryParentId)));
 	    $this->pageTitle = 'Files';
 	    $files = $this->paginate($this->modelClass);
         $this->set(compact('files','filter','categories'));

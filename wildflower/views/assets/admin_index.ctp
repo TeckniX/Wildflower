@@ -25,7 +25,7 @@
     	    </a>
     	    
             <h3><?php echo $html->link($label, array('action' => 'edit', $file['Asset']['id'])); ?></h3>
-            
+            <span style="color: rgb(102,102,102); font-size: 10px;">Category: <?php echo $file['Category']['title']; ?></span>
             <span class="row-actions"><?php echo $html->link(__('View', true), Asset::getUploadUrl($file['Asset']['name']), array('class' => '', 'rel' => 'permalink', 'title' => __('View or download this file.', true))); ?></span>
             
             <span class="cleaner"></span>

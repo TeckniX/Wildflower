@@ -75,6 +75,7 @@ class AppController extends Controller {
 
 		// Home page ID
 		$this->homePageId = intval(Configure::read('AppSettings.home_page_id'));
+		$this->categoryParentId = intval(Configure::read('AppSettings.category_parent_id'));
 
 		// Set cookie defaults
 		$this->cookieName = Configure::read('Wildflower.cookie.name');
@@ -256,6 +257,7 @@ class AppController extends Controller {
             'isPosts' => false,
             'isHome' => $this->isHome,
             'homePageId' => $this->homePageId,
+            'categoryParentId' => $this->categoryParentId,
             // Here without base
             'here' => substr($this->here, strlen($this->base) - strlen($this->here)),
         );
