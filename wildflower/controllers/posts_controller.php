@@ -32,6 +32,7 @@ class PostsController extends AppController {
         
         $defaultParams = array(
             'draft' => 1,
+			'archive' => 0,
             'uuid' => $uuid,
 			'comment_count' => 0
         );
@@ -102,7 +103,6 @@ class PostsController extends AppController {
         // Categories for select box
         $categories = $this->Post->Category->find('list', array('fields' => array('id', 'title')));
         $inCategories = Set::extract($this->data['Category'], '{n}.id');
-        $isDraft = ($this->data[$this->modelClass]['draft'] == 1) ? true : false;
         $categoriesForTree = $this->Post->Category->find('all', array('order' => 'lft ASC', 'recursive' => -1));
         
         $this->set(compact('isRevision', 'hasUser', 'isDraft', 'categoriesForTree', 'inCategories'));
@@ -240,7 +240,7 @@ class PostsController extends AppController {
         $this->paginate = array(
             'limit' => 4,
             'order' => array('Post.created' => 'desc'),
-            'conditions' => 'Post.draft = 0'
+            'conditions' => 'Post.draft = 0 and Post.archive = 0'
         );
         $posts = $this->paginate($this->modelClass);
         
