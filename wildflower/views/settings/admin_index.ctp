@@ -47,6 +47,8 @@
         } else if ($setting['Setting']['name'] == 'theme') {
             $options['options'] = $themeOptions;
             $options['empty'] = 'Default Theme';
+        } else if ($setting['Setting']['name'] == 'credits') {
+        	$options['disabled'] = 'disabled';
         }
         
         if (empty($setting['Setting']['label'])) {
