@@ -156,6 +156,7 @@ class AssetsController extends AppController {
             Cache::write('admin_jlm', $javascripts);
 			// this makes the debugkit work with wf
 			Configure::write('debug', 0);
+			$this->JlmPackager->browserCacheHeaders(filemtime($file));
 			die($javascripts);
         }
         
