@@ -5,6 +5,10 @@ Wildflower CMS extended stylesheet
 
 /* Sitemap CSS */
 
+.clear {
+	clear: both;	
+}
+
 #sitemap dt{
 	border-bottom:1px solid #999999;
 	color:#666666;

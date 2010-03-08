@@ -24,8 +24,10 @@ Router::connect('/contact', array('controller' => 'messages', 'action' => 'index
 Router::connect('/contact/create', array('controller' => 'messages', 'action' => 'create'));
 
 // Sitemap related
+Router::parseExtensions('xml');
 Router::connect('/sitemap', array('controller' => 'pages', 'action' => 'sitemap'));
-Router::connect('/sitemap.xml', array('controller' => 'pages', 'action' => 'sitemap' ,true ));
+// Enforce the XML url param for the /sitemap link
+//Router::connect('/sitemap', array('controller' => 'pages', 'action' => 'sitemap', 'url' => array('ext'  => 'xml')))
 
 // Posts section
 Router::connect('/rss', array('controller' => 'posts', 'action' => 'rss'));

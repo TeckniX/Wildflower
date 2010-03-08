@@ -382,14 +382,19 @@ class PagesController extends AppController {
         $this->_chooseTemplate($page[$this->modelClass]['slug']);
     }
 	
-	/**
+    /**
      * View the sitemap
      * 
      * Handles display if the correct sitemap for the website.
      */
-	function sitemap($xml=false){
+	function sitemap(){
 		$page = $pages = array();
 		$url = '/' . $this->params['url']['url'];
+		if(isset($this->params['url']['ext']) && $this->params['url']['ext']=='xml'){
+			$xml = true;
+		}else{
+			$xml = false;
+		}
         
         if (isset($this->params['id'])) {
             $page = $this->Page->findByIdAndDraft($this->params['id'], 0);
@@ -406,8 +411,7 @@ class PagesController extends AppController {
 		$this->set(compact('pages'));
 		if($xml){
 			$this->RequestHandler->respondAs('text/xml');
-			$this->layout = 'xml/default';
-			$this->render('xml/sitemap');
+			$this->render('sitemap');
 		}else{
 			$this->render('sitemap');
 		}
