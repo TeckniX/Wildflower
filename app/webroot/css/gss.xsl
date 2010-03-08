@@ -7,30 +7,7 @@
      
      Created by Serge Baccou
      1.0 / 20 Aug 2005
-       
-     Changes by Johannes Müller ( http://GSiteCrawler.com/ )
-     1.1 / 20 Aug 2005 - sorting by clicking on column headers
-                       - open urls in new window/tab 
-                       - some stylesheet/CSS cleanup 
      
-     Changes by Tobias Kluge ( http://enarion.net/ )
-     1.2 / 22 Aug 2005 - moved sitemap file and sitemap index file into one file gss.xsl
-	 1.5 / 27 Aug 2005 - added js and css into xslt stylesheet; only gss.xsl is needed now
-     
-     Changes by Serge Baccou
-     1.3 / 23 Aug 2005 - some XSLT cleanup
-     1.4 / 24 Aug 2005 - sourceForge and LGPL links and logos
-                       - sorting is working for siteindex (see gss.js)
-
-
-     Johannes Müller ( http://gsitecrawler.com/ )
-     1.5a/ 31 Aug 2005 - added version number in footer
-                       - removed images (don't allow tracking on other servers)
-     1.5b/ 05 Jul 2006 - removed (unnecessary) link to (missing) CSS file
-                       - moved necessary items from Googles CSS file intern
-                       - javascript code not compatible with Opera 9.0
-     1.6/  19 Nov 2006 - Changed namespace to http://www.sitemaps.org/schemas/sitemap/0.9
-
 -->
 
 <xsl:stylesheet version="2.0" 
@@ -84,6 +61,7 @@
 			.header {
 				font-weight: bold;
 				font-size: 1.1em;
+				cursor: pointer;
 			}
 			
 			p.sml { 
@@ -309,7 +287,6 @@
             <td>
               <p>Google Sitemaps: (c) 2005-2007 <a href="http://www.google.com">Google</a> - <a href="https://www.google.com/webmasters/sitemaps/stats">My Sitemaps</a> - <a href="http://www.google.com/webmasters/sitemaps/docs/en/about.html">About</a> - <a href="http://www.google.com/webmasters/sitemaps/docs/en/faq.html">FAQ</a> - <a href="http://groups-beta.google.com/group/google-sitemaps">Discussion</a> - <a href="http://sitemaps.blogspot.com/">Blog</a></p>
               Google Sitemaps Stylesheets v1.6: (c) 2005-2007 <a href="http://www.baccoubonneville.com">Baccou Bonneville</a> - <a href="http://sourceforge.net/projects/gstoolbox">Project</a> - <a href="http://www.baccoubonneville.com/blogs/index.php/webdesign/2005/08/20/google-sitemaps-stylesheets">Blog</a><br/>
-              Johannes Mueller, SOFTplus <a href="http://gsitecrawler.com">GSiteCrawler</a> - Tobias Kluge, enarion.net <a href="http://enarion.net/google/phpsitemapng">phpSitemapNG</a>
             </td>
           </tr>
         </table>
@@ -319,7 +296,6 @@
 
   <!-- siteindexTable template -->
   <xsl:template name="siteindexTable">
-    <h3>This sitemap index file was created by <a href="http://gsitecrawler.com/">SOFTplus GSiteCrawler</a>.</h3>          
     <h2>Number of sitemaps in this Google sitemap index: <xsl:value-of select="count(sitemap:sitemapindex/sitemap:sitemap)"></xsl:value-of></h2>          
     <p class="sml">Click on the table headers to change sorting.</p>
     <table border="1" width="100%" class="data" id="table1">
@@ -335,7 +311,6 @@
   
   <!-- sitemapTable template -->  
   <xsl:template name="sitemapTable">
-    <h3>This Google Sitemap file was created by <a href="http://gsitecrawler.com/">SOFTplus GSiteCrawler</a>.</h3>          
     <h2>Number of URLs in this Google Sitemap: <xsl:value-of select="count(sitemap:urlset/sitemap:url)"></xsl:value-of></h2>
     <p class="sml">Click on the table headers to change sorting.</p>
     <table border="1" width="100%" class="data" id="table0">
