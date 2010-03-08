@@ -154,7 +154,7 @@ class PagesController extends AppController {
         unset($this->data['__save']);
         
         $oldUrl = $this->Page->field('url');
-        
+		
         $page = $this->Page->save();
         if (empty($page)) return $this->cakeError('save_error');
         
@@ -381,6 +381,37 @@ class PagesController extends AppController {
         
         $this->_chooseTemplate($page[$this->modelClass]['slug']);
     }
+	
+	/**
+     * View the sitemap
+     * 
+     * Handles display if the correct sitemap for the website.
+     */
+	function sitemap($xml=false){
+		$page = $pages = array();
+		$url = '/' . $this->params['url']['url'];
+        
+        if (isset($this->params['id'])) {
+            $page = $this->Page->findByIdAndDraft($this->params['id'], 0);
+        } else if ($this->isHome) {
+            $page = $this->Page->findByIdAndDraft($this->homePageId, 0);
+        } else {
+            $slug = end(explode('/', $url));
+	        $slug = self::slug($slug);
+            $page = $this->Page->findBySlugAndDraft($slug, 0);
+        }
+
+        $this->pageTitle = (!empty($page[$this->modelClass]['meta_title']))? $page[$this->modelClass]['meta_title']: $page[$this->modelClass]['title'];
+		$pages = $this->Page->getSitemap($xml);	
+		$this->set(compact('pages'));
+		if($xml){
+			$this->RequestHandler->respondAs('text/xml');
+			$this->layout = 'xml/default';
+			$this->render('xml/sitemap');
+		}else{
+			$this->render('sitemap');
+		}
+	}
     
     function update_root_cache() {
         if (!isset($this->params['requested'])) {

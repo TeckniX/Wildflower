@@ -97,7 +97,7 @@ class AssetsController extends AppController {
 	function admin_edit($id) {
 		$this->data = $this->Asset->findById($id);
 		$this->pageTitle = $this->data[$this->modelClass]['title'];
-		$categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => $this->Asset->catParent)));
+		$categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => $this->categoryParentId)));
 		$this->set(compact('categories'));
 	}
 	

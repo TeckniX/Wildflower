@@ -23,6 +23,10 @@ Router::connect('/app/webroot/', array('controller' => 'pages', 'action' => 'vie
 Router::connect('/contact', array('controller' => 'messages', 'action' => 'index'));
 Router::connect('/contact/create', array('controller' => 'messages', 'action' => 'create'));
 
+// Sitemap related
+Router::connect('/sitemap', array('controller' => 'pages', 'action' => 'sitemap'));
+Router::connect('/sitemap.xml', array('controller' => 'pages', 'action' => 'sitemap' ,true ));
+
 // Posts section
 Router::connect('/rss', array('controller' => 'posts', 'action' => 'rss'));
 Router::connect('/' . Configure::read('Wildflower.blogIndex'), array('controller' => 'posts', 'action' => 'index'));

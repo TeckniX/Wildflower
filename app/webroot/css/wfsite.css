@@ -1,3 +1,5 @@
+@import "wf.ext.css";
+
 /*
 Wildflower CMS main stylesheet
 
@@ -112,3 +114,4 @@ a {
 		padding-right:5px;
 		text-align:right;
 	}
+

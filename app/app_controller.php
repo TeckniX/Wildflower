@@ -30,6 +30,7 @@ class AppController extends Controller {
 	);
 	public $view = 'Theme';
 	public $homePageId;
+	public $categoryParentId;
 	public $isAuthorized = false;
     public $isHome = false;
 	private $_isDatabaseConnected = true;

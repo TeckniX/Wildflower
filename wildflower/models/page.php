@@ -37,6 +37,8 @@ class Page extends AppModel {
     function beforeSave() {
         parent::beforeSave();
         
+		echo "Debug: ".$this->name." -  ".$this->data[$this->name]['slug'];
+
     	// Construct the absolute page URL
     	if (isset($this->data[$this->name]['slug'])) {
 	    	$level = 0;
@@ -170,6 +172,44 @@ class Page extends AppModel {
      */
     function findAllForSidebar($fields = array('id', 'title')) {
     	return $this->findAll(null, $fields, "{$this->name}.title ASC", null, 1);
+    }
+	
+	/**
+     * Return [title => url] pairs of children pages
+     *
+     * @param string $active
+     * @return array
+     */
+   function getSitemap($xml = false) {
+   		if($xml){
+   			$pages = $parentPages = $this->find('all', array(
+	            'conditions' => 'parent_id IS NULL and draft = 0',
+	            'recursive' => -1,
+	            'fields' => array('id', 'slug', 'url','title', 'updated'),
+	            'order' => 'lft ASC',
+	        ));
+   		}else{
+		$pages = $parentPages = $this->find('all', array(
+	            'conditions' => 'parent_id IS NULL and draft = 0 and slug != "home"',
+	            'recursive' => -1,
+	            'fields' => array('id', 'slug', 'url','title', 'updated'),
+	            'order' => 'lft ASC',
+	        ));
+		}
+		if (empty($parentPages)) {
+            return null;
+        }else{
+			foreach($parentPages as $parentPage){
+				$pages['child'][$parentPage[$this->name]['id']] = $this->find('all', array(
+			            'conditions' => 'parent_id ='.$parentPage[$this->name]['id'].' and draft = 0',
+			            'recursive' => -1,
+			            'fields' => array('id', 'slug', 'url','title', 'updated'),
+			            'order' => 'lft ASC',
+			        ));
+			}
+			return $pages;
+        }
+		
     }
     
     /**
