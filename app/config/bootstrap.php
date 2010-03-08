@@ -62,4 +62,8 @@ $vendorPaths      = array(WILDFLOWER_DIR . 'vendors' . DS);
 $localePaths      = array(WILDFLOWER_DIR . 'locale' . DS);
 $shellPaths       = array(WILDFLOWER_DIR . 'vendors' . DS . 'shells' . DS);
 
+// Define image size
+define('IMG_SMALL',"90x90");
+define('IMG_MEDIUM',"200x200");
+define('IMG_LARGE',"480x480");
 ?>

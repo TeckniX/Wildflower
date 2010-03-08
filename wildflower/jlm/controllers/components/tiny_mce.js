@@ -82,6 +82,29 @@ $.jlm.addComponent('tinyMce', {
                 $(this).addClass('selected');
             });
             
+            // Bind image size
+            $("#imgSize", imageSidebarEl).change(function(){
+
+                    if($(this).val()!="" && $(this).val()!="custom"){
+                            $('#cropSize').css("display","inline");
+                            $('#customSize').hide();
+                            var iSize = $(this).val().split("x");
+                            $('#resize_x', imageSidebarEl).val(iSize[0]);
+                            $('#resize_y', imageSidebarEl).val(iSize[1]);
+                    }
+                    else if($(this).val()=="custom"){
+                            $('#cropSize').css("display","inline")
+                            $('#customSize').show();
+
+                    }
+                    else{
+                            $('#cropSize').css("display","none");
+                            $('#customSize').hide();
+                            $('#resize_x', imageSidebarEl).val('');
+                            $('#resize_y', imageSidebarEl).val('');
+                    }
+            });
+            
             // Bind insert button
     		$('#insert_image', imageSidebarEl).click(function() {
     			var imgName = $('.selected img', imageSidebarEl).attr('alt');
@@ -123,6 +146,13 @@ $.jlm.addComponent('tinyMce', {
             // Bind pagination
             $('.paginator a', imageSidebarEl).click(function() {
                 var url = $(this).attr('href');
+                $.jlm.components.tinyMce.loadInsertImageContent(url);
+                return false;
+            });
+            
+            // Bind filter
+            $('#catFilter', imageSidebarEl).change(function() {
+                var url = $(this).val();
                 $.jlm.components.tinyMce.loadInsertImageContent(url);
                 return false;
             });

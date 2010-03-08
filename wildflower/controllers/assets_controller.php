@@ -107,18 +107,24 @@ class AssetsController extends AppController {
 	 * @param int $limit Number of images on one page
 	 */
 	function admin_insert_image() {
+		// Categories for select box
+        $categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => $this->categoryParentId)));
+		$filter = isset($this->params['named']['filter'])? $this->params['named']['filter']:null;
 		$this->autoLayout = false;
 		$this->paginate['limit'] = 10;
-		$this->paginate['conditions'] = "{$this->modelClass}.mime LIKE 'image%'";
+		$this->paginate['conditions'] = "{$this->modelClass}.mime LIKE 'image%'".(($filter!=null)? " and {$this->modelClass}.category_id = $filter":"");
 		$images = $this->paginate($this->modelClass);
-		$this->set('images', $images);
+		$this->set(compact('images', 'categories','filter'));
 	}
 	
 	function admin_browse_images() {
+		// Categories for select box
+        $categories = $this->Asset->Category->find('list', array('fields' => array('id', 'title'), 'conditions' => array('Category.parent_id' => $this->categoryParentId)));
+		$filter = isset($this->params['named']['filter'])? $this->params['named']['filter']:null;
 		$this->paginate['limit'] = 6;
-		$this->paginate['conditions'] = "{$this->modelClass}.mime LIKE 'image%'";
+		$this->paginate['conditions'] = "{$this->modelClass}.mime LIKE 'image%'".(($filter!=null)? " and {$this->modelClass}.category_id = $filter":"");
 		$images = $this->paginate($this->modelClass);
-		$this->set('images', $images);
+		$this->set(compact('images', 'categories','filter'));
 	}
 	
 	function admin_update() {

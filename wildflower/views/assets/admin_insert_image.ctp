@@ -1,5 +1,5 @@
 <li id="image-browser" class="insert_image_sidebar">
-    <h4>Insert an image</h4>
+    <h4>Insert an image <?php echo $this->element('admin_category_filter'); ?></h4>
     
     <?php if (empty($images)): ?>
         <p>No files uploaded yet.</p>
@@ -28,8 +28,11 @@
     
     <div id="resize_image">
         <h5>Resize</h5>
-        Width: <input type="text" id="resize_x" name="data[Resize][width]" size="4"> px&nbsp;&nbsp; Height: <input type="text" name="data[Resize][height]" id="resize_y" size="4"> px
-    </div>
+        <select id="imgSize"><option value="">Normal</option><option value="<?= IMG_SMALL ?>">Small</option><option value="<?= IMG_MEDIUM ?>">Medium</option><option value="<?= IMG_LARGE ?>">Large</option><option value="custom">Custom</option></select>
+        <span id="cropSize" style="padding-left: 10px;display:none;">Crop: <input type="checkbox" id="imgCrop" value="1" /></span>
+		<br><br>
+		<span id="customSize" style="display: none">Width: <input type="text" id="resize_x" name="data[Resize][width]" size="4"> px&nbsp;&nbsp; Height: <input type="text" name="data[Resize][height]" id="resize_y" size="4"> px</span>
+     </div>
     
     <span class="cleaner"></span>
     <button id="insert_image">Insert selected image</button>
