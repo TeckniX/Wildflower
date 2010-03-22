@@ -119,16 +119,16 @@ $.jlm.addComponent('tinyMce', {
 
                 // Thumbnail
                 var resizeWidth = $('#resize_x', imageSidebarEl).val();
-                var crop = 1;
+                var crop = $('#crop', imageSidebarEl).val();
                 var resizeHeight = $('#resize_y', imageSidebarEl).val();
-                if (intval(resizeHeight) < 1) {
+                if (intval(resizeHeight) > 1) {
                     resizeHeight = resizeWidth;
                 }
                 if (intval(resizeHeight) > 1) {
-                    imgUrl = $.jlm.base + '/wildflower/thumbnail/' + imgNameEscaped + '/' + resizeWidth + '/' + resizeHeight + '/' + crop;
+                    imgUrl = $.jlm.base + '/'+$.jlm.params.custom.wildflowerMPrefix+'/thumbnail/' + imgNameEscaped + '/' + resizeWidth + '/' + resizeHeight + '/' + crop;
                 }
 
-    			// Image HTML
+    			// Image HTML - needs to handle class & alt
     			var imgHtml = '<img alt="' + imgName + '" src="' + imgUrl + '" />';
 
     			$.jlm.components.tinyMce.editor.execCommand('mceInsertContent', 0, imgHtml);

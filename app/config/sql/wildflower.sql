@@ -328,11 +328,10 @@ CREATE TABLE `posts` (
   `keywords_meta_tag` text COLLATE utf8_unicode_ci,
   `created` datetime NOT NULL,
   `updated` datetime NOT NULL,
-  `draft` int(1) NOT NULL DEFAULT '0',
-  `archive` tinyint(1) NOT NULL DEFAULT '0',
-  `uuid` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `comment_count` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  `draft` int(1) NOT NULL default '0',
+  `uuid` varchar(255) collate utf8_unicode_ci NOT NULL,
+  `comment_count` int(11) default NULL,
+  PRIMARY KEY  (`id`),
   UNIQUE KEY `slug` (`slug`),
   FULLTEXT KEY `content` (`content`)
 ) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -344,7 +343,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (60,'a-test-posts','A test posts','<p>dasdasd</p>',1,NULL,NULL,'2009-06-29 18:44:28','2010-02-04 13:52:56',0,0,'755abcb0855fe16cc54f270e59a4efd6091783a9',0);
+INSERT INTO `posts` VALUES (60,'a-test-posts','A test posts','<p>dasdasd</p>',1,NULL,NULL,'2009-06-29 18:44:28','2010-02-04 13:52:56',0,'755abcb0855fe16cc54f270e59a4efd6091783a9',0);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
